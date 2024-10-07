@@ -22,10 +22,12 @@ const Navbar = ({setShowLogin}) => {
     <div className='navbar'>
        <Link to='/'> <img src={assets.logo} alt="" className='logo' /></Link>
         <ul className="navbar-menu">
-            <Link to='/' onClick={()=> setMenu('home')} className={menu === 'home'?'active':''}>home</Link>
-            <a href='#explore-menu' onClick={()=> setMenu('menu')} className={menu === 'menu'?'active':''}>menu</a>
-            <a href='#app-download' onClick={()=> setMenu('mobile-app')} className={menu === 'mobile-app'?'active':''}>mobile-app</a>
-            <a href='#footer' onClick={()=> setMenu('contact-us')} className={menu === 'contact-us'?'active':''}>contact us</a>
+            <Link to='/' onClick={()=> setMenu('home')} className={menu === 'home'?'active':''}>Home</Link>
+            <Link to ='/menu' onClick={()=> setMenu('menu')} className={menu === 'menu'?'active':''}>Menu</Link>
+            <Link to='/about' onClick={()=> setMenu('about')} className={menu === 'about'?'active':''}>About </Link>
+            <Link to ='/app' onClick={()=> setMenu('app')} className={menu === 'app'?'active':''}>Mobile-app </Link>
+            <Link to ='/contact' onClick={()=> setMenu('contac')} className={menu === 'contact'?'active':''}>Contact us</Link>
+            <Link to ='/testomonial' onClick={()=> setMenu('testomonial')} className={menu === 'testomonial'?'active':''}>Testomonial</Link>
         </ul>
         <div className="navbar-right">
             <img src={assets.search_icon} alt="" />

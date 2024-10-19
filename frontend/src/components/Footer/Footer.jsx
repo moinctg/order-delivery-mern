@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="footer-content">
             <div className="footer-content-left">
                 <img src={assets.logo} alt="" />
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum in, beatae dolorem non optio cupiditate, quam sunt dicta dolores minima exercitationem ducimus totam aut asperiores inventore harum laudantium. Distinctio, libero.</p>
+                <p className='text-white'> We believe that great food brings people together. Our mission is to make it easier for you to enjoy your favorite meals from the comfort of your home. Whether you’re craving a quick snack or a gourmet feast, we’re here to deliver fresh, delicious food straight to your door</p>
                 <div className="footer-social-icons">
                     <img src={assets.facebook_icon} alt="" />
                     <img src={assets.twitter_icon} alt="" />
@@ -35,7 +35,7 @@ const Footer = () => {
            
         </div>
         <hr />
-        <p className="footer-copyright">
+        <p className="footer-copyright text-white">
             Copyright 2024 &copy; Arif & Anik - All Right Reserved.
         </p>
     </div>

@@ -82,9 +82,23 @@ const Testomonial = () =>{
         //     <h4>12</h4>
         // </div> */}
         // </OwlCarousel>
-
+        <div>
+        <div className="slider-area ">
+        <div className="single-slider slider-height2 d-flex align-items-center">
+            <div className="container">
+                <div className="row">
+                    <div className="col-xl-12">
+                        <div className="hero-cap text-center">
+                            <h2>What Our Clients Say </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+       
         <div className="testimonial-section">
-      <h2>What Our Clients Say</h2>
+      <h2></h2>
       <OwlCarousel
         className="owl-theme"
         loop
@@ -114,7 +128,7 @@ const Testomonial = () =>{
       </OwlCarousel>
     </div>
 
-
+    </div>
 
 
     )

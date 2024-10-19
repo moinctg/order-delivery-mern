@@ -22,6 +22,9 @@
     align-items: center;
     gap: 40px;
 }
+.navbar:hover{
+    color: tomato;
+}
 
 .navbar button{
     background: transparent;

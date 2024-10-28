@@ -27,7 +27,7 @@ const Navbar = ({setShowLogin}) => {
             <Link to='/about' onClick={()=> setMenu('about')} className={menu === 'about'?'active':''}>About </Link>
             <Link to ='/app' onClick={()=> setMenu('app')} className={menu === 'app'?'active':''}>Mobile-app </Link>
             <Link to ='/contact' onClick={()=> setMenu('contac')} className={menu === 'contact'?'active':''}>Contact us</Link>
-            <Link to ='/testomonial' onClick={()=> setMenu('testomonial')} className={menu === 'testomonial'?'active':''}>Testomonial</Link>
+            <Link to ='/feedback' onClick={()=> setMenu('feedback')} className={menu === 'feedback'?'active':''}>Feeback</Link>
         </ul>
         <div className="navbar-right">
             <img src={assets.search_icon} alt="" />

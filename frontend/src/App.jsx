@@ -8,7 +8,9 @@ import Footer from './components/Footer/Footer'
 import About from './components/About/About'
 import Contact from './components/Contact/Contact'
 import AppDownload from './components/AppDownload/AppDownload'
-import Testomonials from './components/Testomonial/Testomonial'
+// import Testomonials from './components/Testomonial/Testomonial'
+import Feedback from './components/Feedback/FeedbackList'
+import FeedbackForm from './components/Feedback/FeedBackForm'
 import Menu from './components/ExploreMenu/ExploreMenu'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 import Verify from './pages/Verify/Verify'
@@ -32,7 +34,8 @@ const App = () => {
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/app' element={<AppDownload/>}/>
         <Route path='/menu' element={<Menu/>}/>
-        <Route path='/testomonial' element={<Testomonials/>}/>
+        <Route path='/feedback' element={<Feedback/>}/>
+        <Route path='/feedback_form' element={<FeedbackForm/>}/>
       </Routes>
     </div>
     <Footer/>

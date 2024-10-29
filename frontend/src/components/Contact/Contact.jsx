@@ -12,22 +12,22 @@ const center = {
 };
 
 const Contact = () => {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: 'YOUR_API_KEY', // Replace with your actual API key
-  });
+  // const { isLoaded } = useJsApiLoader({
+  //   id: 'google-map-script',
+  //   googleMapsApiKey: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao&libraries=places&callback=initMap', // Replace with your actual API key
+  // });
 
-  const [map, setMap] = React.useState(null);
+  // const [map, setMap] = React.useState(null);
 
-  const onLoad = React.useCallback((map) => {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-    setMap(map);
-  }, []);
+  // const onLoad = React.useCallback((map) => {
+  //   const bounds = new window.google.maps.LatLngBounds(center);
+  //   map.fitBounds(bounds);
+  //   setMap(map);
+  // }, []);
 
-  const onUnmount = React.useCallback(() => {
-    setMap(null);
-  }, []);
+  // const onUnmount = React.useCallback(() => {
+  //   setMap(null);
+  // }, []);
 
   return (
     <div>
@@ -82,21 +82,21 @@ const Contact = () => {
           <div className="media contact-info">
             <span className="contact-info__icon"><i className="ti-home"></i></span>
             <div className="media-body">
-              <h3>95, Agrabad, Chattogram.</h3>
-              <p>Bangladesh, Est 2021</p>
+              <h3>Chawkbazar, Chittagong.</h3>
+              <p>Bangladesh</p>
             </div>
           </div>
           <div className="media contact-info">
             <span className="contact-info__icon"><i className="ti-tablet"></i></span>
             <div className="media-body">
-              <h3>+880-1824-682965</h3>
+              <h3>+880-1830-955840</h3>
               <p>Sat to Fri 9am to 6pm</p>
             </div>
           </div>
           <div className="media contact-info">
             <span className="contact-info__icon"><i className="ti-email"></i></span>
             <div className="media-body">
-              <h3>Admin@asianwathstore.com</h3>
+              <h3>Admin@redchiliinfo.com</h3>
               <p>Send us your query anytime!</p>
             </div>
           </div>

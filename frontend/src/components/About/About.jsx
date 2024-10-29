@@ -68,10 +68,10 @@ const About = () => {
               </h5>
               <h1 className="mb-4">
                 Welcome to{" "}
-                <i className="fa fa-utensils text-primary me-2"></i>Restoran
+                <i className="fa fa-utensils text-primary me-2">Red Chili</i>Restaurant 
               </h1>
               <p className="mb-4">
-                At [Your App Name], we believe that great food brings people together. Our mission is to make it easier for you to enjoy your favorite meals from the comfort of your home. Whether you’re craving a quick snack or a gourmet feast, we’re here to deliver fresh, delicious food straight to your door.
+                At Food Order Delivery Sysem , we believe that great food brings people together. Our mission is to make it easier for you to enjoy your favorite meals from the comfort of your home. Whether you’re craving a quick snack or a gourmet feast, we’re here to deliver fresh, delicious food straight to your door.
               </p>
               <p className="mb-4">
               We partner with the best local restaurants and chefs, offering a wide variety of cuisines to satisfy every craving. From classic comfort foods to exotic dishes from around the world, we bring the flavors you love, made with the freshest ingredients and the highest quality standards.

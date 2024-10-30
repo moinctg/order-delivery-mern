@@ -1,15 +1,6 @@
 import React from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
-const containerStyle = {
-  width: '100%', // Adjusted to take full width
-  height: '400px', // Adjusted height
-};
 
-const center = {
-  lat: 22.336440, // Coordinates for Agrabad, Chittagong
-  lng: 91.831680,
-};
 
 const Contact = () => {
   // const { isLoaded } = useJsApiLoader({
@@ -104,19 +95,7 @@ const Contact = () => {
       </div>
 
       {/* Google Map */}
-      {isLoaded ? (
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={15} // Adjusted zoom level for better visibility
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-        >
-          {/* Add any child components here if needed, such as markers */}
-        </GoogleMap>
-      ) : (
-        <div>Loading map...</div> // Optional loading message
-      )}
+     
     </div>
   );
 };

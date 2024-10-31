@@ -1,9 +1,11 @@
 import React, { useState ,useContext,useEffect} from 'react';
 import axios from 'axios';
-import { StoreContext } from '../context/StoreContext';
+import { StoreContext,useUser } from '../context/StoreContext';
+
 
 const FeedbackForm = () => {
     const {url, token} = useContext(StoreContext);
+    const { user, setUser } = useUser()
     const [feedbackText, setFeedbackText] = useState('');
     const [rating, setRating] = useState(0);
     const [message, setMessage] = useState(''); // To display a success/error message after submission
@@ -12,6 +14,7 @@ const FeedbackForm = () => {
         e.preventDefault();
         try {
             const response = await axios.post(url+'/api/feedback/submit',{},{headers:{token}})
+                user
                 feedbackText,
                 rating,
                 // add userId if needed

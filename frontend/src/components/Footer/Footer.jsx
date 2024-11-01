@@ -1,6 +1,7 @@
 import React from 'react'
 import './Footer.css'
 import { assets } from '../../assets/assets'
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 const Footer = () => {
   return (
@@ -32,7 +33,11 @@ const Footer = () => {
                     <li>dulanjalisenarathna93@gmail.com</li>
                 </ul>
             </div>
-           
+            <MessengerCustomerChat
+    pageId="<416598257997739>"
+    appId="<589295966995891>"
+    htmlRef="<REF_STRING>"
+  />,
         </div>
         <hr />
         <p className="footer-copyright text-white">

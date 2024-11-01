@@ -33,16 +33,18 @@ const Footer = () => {
                     <li>dulanjalisenarathna93@gmail.com</li>
                 </ul>
             </div>
-            <MessengerCustomerChat
-    pageId="<416598257997739>"
-    appId="<589295966995891>"
-    htmlRef="<REF_STRING>"
-  />,
+            
         </div>
         <hr />
         <p className="footer-copyright text-white">
             Copyright 2024 &copy; Arif & Anik - All Right Reserved.
         </p>
+
+     <MessengerCustomerChat
+    pageId="416598257997739"
+    appId="589295966995891"
+    
+  />,
     </div>
   )
 }

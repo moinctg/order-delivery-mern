@@ -121,7 +121,7 @@ const StoreContextProvider = (props) => {
     const [user, setUser] = useState(null); // User state for UserContext
 
     // const url = "https://order-delivery-mern-backend-1.onrender.com";
-    const url= "http://localhost:8000"
+    const url= "https://order-delivery-mern-backend-1.onrender.com"
 
 
     const addToCart = async (itemId) => {

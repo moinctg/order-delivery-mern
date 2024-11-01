@@ -15,6 +15,8 @@ import Menu from './components/ExploreMenu/ExploreMenu'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 import Verify from './pages/Verify/Verify'
 import MyOrders from './pages/MyOrders/MyOrders'
+// import Payment from './components/Payment/PaymentButton'
+import Checkout from './pages/Checkout'
 
 const App = () => {
 
@@ -36,6 +38,7 @@ const App = () => {
         <Route path='/menu' element={<Menu/>}/>
         <Route path='/feedback' element={<Feedback/>}/>
         <Route path='/feedback_form' element={<FeedbackForm/>}/>
+        <Route path='/checkout' element={<Checkout/>}/>
       </Routes>
     </div>
     <Footer/>

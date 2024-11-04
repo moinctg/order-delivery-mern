@@ -1,5 +1,5 @@
-import CustomInput from '../Costom/CustomInput1';
-import CustomInput2 from '../Costom/CustomInput2';
+import CustomInput from '../Custom/CustomInput';
+import CustomInput2 from '../Custom/CutomInput2';
 
 const ShippingInfo = ({ formData, name, onNameChange, handleInputChangeShopping, setError }) => (
     <div>

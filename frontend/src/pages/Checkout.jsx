@@ -1,7 +1,7 @@
 // import CheckoutForm from '../components/CheckoutPage/CheckoutForm';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import CheckoutPage from '../components/Payment/CartItem';
+import CheckoutPage from '../components/Checkoutpage';
 import { useLocation } from 'react-router-dom';
 
 

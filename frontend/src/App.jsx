@@ -17,6 +17,7 @@ import Verify from './pages/Verify/Verify'
 import MyOrders from './pages/MyOrders/MyOrders'
 // import Payment from './components/Payment/PaymentButton'
 import Checkout from './pages/Checkout'
+import BikasOrder from './pages/BikasOrder/BikasOrder'
 
 const App = () => {
 
@@ -38,7 +39,7 @@ const App = () => {
         <Route path='/menu' element={<Menu/>}/>
         <Route path='/feedback' element={<Feedback/>}/>
         <Route path='/feedback_form' element={<FeedbackForm/>}/>
-        <Route path='/checkout' element={<Checkout/>}/>
+        <Route path='/checkout' element={<BikasOrder/>}/>
       </Routes>
     </div>
     <Footer/>

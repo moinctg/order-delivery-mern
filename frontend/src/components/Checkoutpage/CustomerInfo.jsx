@@ -1,5 +1,5 @@
-import CustomInput from '../custom/CustomInput';
-import CustomInput2 from '../custom/CustomInput2';
+import CustomInput from '../Custom/CustomInput'
+import CustomInput2 from '../Custom/CutomInput2';
 
 const CustomerInfo = ({ formData, name, onNameChange, handleInputChangeCustomer, setError }) => (
     <div>

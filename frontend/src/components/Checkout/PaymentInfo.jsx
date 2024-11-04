@@ -1,5 +1,5 @@
 // import CustomInput2 from "../../custom/CustomInput2";
-import CustomInput from '../Costom/CustomInput1';
+import CustomInput from '../Custom/CustomInput';
 
 const styles = {
     infoItem: {

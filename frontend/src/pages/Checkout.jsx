@@ -3,6 +3,7 @@ import { StoreContext } from '../components/context/StoreContext';
 
 const CheckoutPage = () => {
   const { getTotalCartAmount, cartItems, token, url } = useContext(StoreContext);
+  console.log(getTotalCartAmount, cartItems)
   const [customerInfo, setCustomerInfo] = useState({
     cusName: '',
     cusEmail: '',

@@ -1,17 +1,20 @@
 // import axios from 'axios';
-// import { useEffect, useState } from 'react';
+// import { useEffect, useState, useContext } from 'react';
 // import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 // import { VscLoading } from 'react-icons/vsc';
 // import { MultiStepForm, Step } from 'react-multi-form';
-// import cartData from '../../data';
 // import styles from '../../styles/CheckoutStyles.module.scss';
-// // import Layout from '../Layout';
 // import CartItems from './CartItem';
 // import CustomerInfo from './CustomerInfo';
 // import PaymentInfo from './PaymentInfo';
 // import ShippingInfo from './ShippingInfo';
+// import { StoreContext } from '../../components/context/StoreContext';
+// import { useNavigate } from 'react-router-dom';
 
 // const CheckoutPage = () => {
+//     const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
+//     const navigate = useNavigate();
+
 //     const [active, setActive] = useState(1);
 //     const [loading, setLoading] = useState(false);
 //     const [error, setError] = useState('');
@@ -19,11 +22,12 @@
 //         firstName: '',
 //         lastName: '',
 //     });
+
 //     const [formData, setFormData] = useState({
-//         cartItems: cartData,
-//         totalAmount: 3870.85,
+//         cartItems: cartItems, // Use context cartItems here
+//         totalAmount: getTotalCartAmount(),
 //         deliveryMethod: 'Courier',
-//         numItem: cartData.length,
+//         numItem: cartItems.length,
 //         customerInfo: {
 //             cusName: '',
 //             cusEmail: '',
@@ -47,6 +51,7 @@
 //         },
 //     });
 
+//     // Function to handle name changes
 //     const onNameChange = (event) => {
 //         setName({
 //             ...name,
@@ -54,13 +59,7 @@
 //         });
 //     };
 
-//     const handleInputChange = (event) => {
-//         setFormData({
-//             ...formData,
-//             [event.target.name]: event.target.value.trim(),
-//         });
-//     };
-
+//     // Handle input changes for customer and shipping info
 //     const handleInputChangeCustomer = (event) => {
 //         setFormData({
 //             ...formData,
@@ -81,38 +80,56 @@
 //         });
 //     };
 
+//     // Handle checkout
 //     const onHandleCheckout = async () => {
 //         setLoading(true);
+//         const orderItems = food_list.filter(item => cartItems[item._id] > 0)
+//                                     .map(item => ({ ...item, quantity: cartItems[item._id] }));
 
-//         const SERVER_URL =
-//             process.env.REACT_APP_SERVER_URL || 'https://order-delivery-mern-backend-1.onrender.com';
+//         const orderData = {
+//             items: orderItems,
+//             amount: getTotalCartAmount() + 2, // Update as needed
+//         };
 
-//         const res = await axios.post(`${SERVER_URL}/api/payment/checkout`, formData);
-
-//         console.log(res.data);
-//         if (res.data?.length > 30) {
+//         try {
+//             const response = await axios.post(`${url}/api/payment/checkout`, formData, { headers: { token } });
+//             if (response.data?.session_url) {
+//                 window.location.replace(response.data.session_url);
+//             } else {
+//                 alert('Checkout failed');
+//             }
+//         } catch (error) {
+//             console.error("Checkout error: ", error);
+//             setError("Checkout failed, please try again.");
+//         } finally {
 //             setLoading(false);
-//             window.location.replace(res.data);
-//         } else {
-//             alert('Checkout failed'); // eslint-disable-line no-alert
 //         }
 //     };
 
+//     // Handle conditional navigation
 //     useEffect(() => {
-//         setFormData({
-//             ...formData,
+//         if (!token) {
+//             navigate('/cart');
+//         } else if (getTotalCartAmount() === 0) {
+//             navigate('/cart');
+//         }
+//     }, [token, getTotalCartAmount, navigate]);
+
+//     useEffect(() => {
+//         setFormData(prevFormData => ({
+//             ...prevFormData,
 //             customerInfo: {
-//                 ...formData.customerInfo,
+//                 ...prevFormData.customerInfo,
 //                 cusName: `${name.firstName} ${name.lastName}`,
 //             },
-//         });
+//         }));
 //     }, [name]);
 
 //     useEffect(() => {
-//         setFormData({
-//             ...formData,
+//         setFormData(prevFormData => ({
+//             ...prevFormData,
 //             shippingInfo: {
-//                 ...formData.shippingInfo,
+//                 ...prevFormData.shippingInfo,
 //                 name: formData.customerInfo.cusName,
 //                 shippingAdd1: formData.customerInfo.cusAdd1,
 //                 shippingAdd2: formData.customerInfo.cusAdd2,
@@ -121,20 +138,14 @@
 //                 shippingPostcode: formData.customerInfo.cusPostcode,
 //                 shippingCountry: formData.customerInfo.cusCountry,
 //             },
-//         });
+//         }));
 //     }, [formData.customerInfo]);
 
 //     return (
-//      <div>
+//         <div>
 //             <main className={styles.checkout}>
-//                 <aside className={styles.checkout__cartItems} style={{ width: '300px' }}>
-//                     <h3
-//                         style={{
-//                             textAlign: 'center',
-//                             fontFamily: 'Comic Sans MS',
-//                             fontWeight: 'bold',
-//                         }}
-//                     >
+//                 {/* <aside className={styles.checkout__cartItems} style={{ width: '300px' }}>
+//                     <h3 style={{ textAlign: 'center', fontFamily: 'Comic Sans MS', fontWeight: 'bold' }}>
 //                         Order Summary
 //                     </h3>
 //                     <CartItems
@@ -146,7 +157,7 @@
 //                         }}
 //                         divStyle={{ background: '#e2e2e2' }}
 //                     />
-//                 </aside>
+//                 </aside> */}
 
 //                 <aside className={styles.checkout__checkoutForm}>
 //                     <MultiStepForm activeStep={active}>
@@ -165,9 +176,6 @@
 //                             <ShippingInfo
 //                                 formData={formData}
 //                                 setFormData={setFormData}
-//                                 name={name}
-//                                 setName={setName}
-//                                 onNameChange={onNameChange}
 //                                 handleInputChangeShopping={handleInputChangeShopping}
 //                                 setError={setError}
 //                             />
@@ -175,13 +183,13 @@
 //                         <Step label="Payment">
 //                             <PaymentInfo
 //                                 formData={formData}
-//                                 handleInputChange={handleInputChange}
+//                                 handleInputChangeCustomer={handleInputChangeCustomer}
 //                                 setError={setError}
 //                             />
 //                         </Step>
 //                     </MultiStepForm>
 
-//                     {error !== '' && <div className={styles.error}>{error}</div>}
+//                     {error && <div className={styles.error}>{error}</div>}
 
 //                     {active !== 1 && (
 //                         <button
@@ -198,27 +206,9 @@
 //                         <button
 //                             type="button"
 //                             onClick={() => {
-//                                 if (
-//                                     active === 1 &&
-//                                     name.firstName !== '' &&
-//                                     name.lastName !== '' &&
-//                                     formData.customerInfo.cusAdd1 !== '' &&
-//                                     formData.customerInfo.cusPhone !== '' &&
-//                                     formData.customerInfo.cusEmail !== '' &&
-//                                     formData.customerInfo.cusCity !== '' &&
-//                                     formData.customerInfo.cusState !== '' &&
-//                                     formData.customerInfo.cusPostcode !== ''
-//                                 ) {
+//                                 if (active === 1 && formData.customerInfo.cusEmail) {
 //                                     setActive(active + 1);
-//                                 } else if (
-//                                     active === 2 &&
-//                                     name.firstName !== '' &&
-//                                     name.lastName !== '' &&
-//                                     formData.shippingInfo.shippingAdd1 !== '' &&
-//                                     formData.shippingInfo.shippingCity !== '' &&
-//                                     formData.shippingInfo.shippingState !== '' &&
-//                                     formData.shippingInfo.shippingPostcode !== ''
-//                                 ) {
+//                                 } else if (active === 2 && formData.shippingInfo.shippingAdd1) {
 //                                     setActive(active + 1);
 //                                 } else {
 //                                     setError('Required fields must be provided');
@@ -235,42 +225,47 @@
 //                         <button
 //                             type="button"
 //                             className={styles.checkout__checkoutForm__btn}
-//                             id="button"
 //                             style={{ marginTop: '2rem' }}
-//                             onClick={() => onHandleCheckout()}
+//                             onClick={onHandleCheckout}
 //                             disabled={loading}
 //                         >
-//                             {loading && (
+//                             {loading ? (
 //                                 <>
 //                                     <VscLoading className={styles.checkout__loading__icon} />
 //                                     <span>Checking out...</span>
 //                                 </>
+//                             ) : (
+//                                 <span>Checkout</span>
 //                             )}
-//                             {!loading && <span>Checkout</span>}
 //                         </button>
 //                     )}
 //                 </aside>
 //             </main>
-//             </div>
+//         </div>
 //     );
 // };
 
 // export default CheckoutPage;
 
 
+
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { VscLoading } from 'react-icons/vsc';
 import { MultiStepForm, Step } from 'react-multi-form';
-import cartData from '../../data';
 import styles from '../../styles/CheckoutStyles.module.scss';
 import CartItems from './CartItem';
 import CustomerInfo from './CustomerInfo';
 import PaymentInfo from './PaymentInfo';
 import ShippingInfo from './ShippingInfo';
+import { StoreContext } from '../../components/context/StoreContext';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutPage = () => {
+    const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
+    const navigate = useNavigate();
+
     const [active, setActive] = useState(1);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -278,11 +273,12 @@ const CheckoutPage = () => {
         firstName: '',
         lastName: '',
     });
+
     const [formData, setFormData] = useState({
-        cartItems: cartData,
-        totalAmount: 3870.85,
+        cartItems: cartItems, // Use context cartItems here
+        totalAmount: getTotalCartAmount(),
         deliveryMethod: 'Courier',
-        numItem: cartData.length,
+        numItem: cartItems.length,
         customerInfo: {
             cusName: '',
             cusEmail: '',
@@ -306,6 +302,7 @@ const CheckoutPage = () => {
         },
     });
 
+    // Function to handle name changes
     const onNameChange = (event) => {
         setName({
             ...name,
@@ -313,13 +310,7 @@ const CheckoutPage = () => {
         });
     };
 
-    const handleInputChange = (event) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value.trim(),
-        });
-    };
-
+    // Handle input changes for customer and shipping info
     const handleInputChangeCustomer = (event) => {
         setFormData({
             ...formData,
@@ -340,38 +331,56 @@ const CheckoutPage = () => {
         });
     };
 
+    // Handle checkout
     const onHandleCheckout = async () => {
         setLoading(true);
+        const orderItems = food_list.filter(item => cartItems[item._id] > 0)
+                                    .map(item => ({ ...item, quantity: cartItems[item._id] }));
 
-        const SERVER_URL =
-            process.env.REACT_APP_SERVER_URL || 'https://order-delivery-mern-backend-1.onrender.com';
+        const orderData = {
+            items: orderItems,
+            amount: getTotalCartAmount() + 2, // Update as needed
+        };
 
-        const res = await axios.post(`${SERVER_URL}/api/payment/checkout`, formData);
-
-        console.log(res.data);
-        if (res.data?.length > 30) {
+        try {
+            const response = await axios.post(`${url}/api/payment/checkout`, formData, { headers: { token } });
+            if (response.data?.session_url) {
+                window.location.replace(response.data.session_url);
+            } else {
+                alert('Checkout failed');
+            }
+        } catch (error) {
+            console.error("Checkout error: ", error);
+            setError("Checkout failed, please try again.");
+        } finally {
             setLoading(false);
-            window.location.replace(res.data);
-        } else {
-            alert('Checkout failed'); // eslint-disable-line no-alert
         }
     };
 
+    // Handle conditional navigation
     useEffect(() => {
-        setFormData({
-            ...formData,
+        if (!token) {
+            navigate('/cart');
+        } else if (getTotalCartAmount() === 0) {
+            navigate('/cart');
+        }
+    }, [token, getTotalCartAmount, navigate]);
+
+    useEffect(() => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
             customerInfo: {
-                ...formData.customerInfo,
+                ...prevFormData.customerInfo,
                 cusName: `${name.firstName} ${name.lastName}`,
             },
-        });
+        }));
     }, [name]);
 
     useEffect(() => {
-        setFormData({
-            ...formData,
+        setFormData(prevFormData => ({
+            ...prevFormData,
             shippingInfo: {
-                ...formData.shippingInfo,
+                ...prevFormData.shippingInfo,
                 name: formData.customerInfo.cusName,
                 shippingAdd1: formData.customerInfo.cusAdd1,
                 shippingAdd2: formData.customerInfo.cusAdd2,
@@ -380,21 +389,15 @@ const CheckoutPage = () => {
                 shippingPostcode: formData.customerInfo.cusPostcode,
                 shippingCountry: formData.customerInfo.cusCountry,
             },
-        });
+        }));
     }, [formData.customerInfo]);
 
     return (
-     <div>
+        <div>
             <main className={styles.checkout}>
                 <aside className={styles.checkout__cartItems} style={{ width: '300px' }}>
-                    <h3
-                        style={{
-                            textAlign: 'center',
-                            fontFamily: 'Comic Sans MS',
-                            fontWeight: 'bold',
-                        }}
-                    >
-                        Bkash Auto Order Summary
+                    <h3 style={{ textAlign: 'center', fontFamily: 'Comic Sans MS', fontWeight: 'bold' }}>
+                        Order Summary
                     </h3>
                     <CartItems
                         checkoutBtn={false}
@@ -424,9 +427,6 @@ const CheckoutPage = () => {
                             <ShippingInfo
                                 formData={formData}
                                 setFormData={setFormData}
-                                name={name}
-                                setName={setName}
-                                onNameChange={onNameChange}
                                 handleInputChangeShopping={handleInputChangeShopping}
                                 setError={setError}
                             />
@@ -434,13 +434,13 @@ const CheckoutPage = () => {
                         <Step label="Payment">
                             <PaymentInfo
                                 formData={formData}
-                                handleInputChange={handleInputChange}
+                                handleInputChangeCustomer={handleInputChangeCustomer}
                                 setError={setError}
                             />
                         </Step>
                     </MultiStepForm>
 
-                    {error !== '' && <div className={styles.error}>{error}</div>}
+                    {error && <div className={styles.error}>{error}</div>}
 
                     {active !== 1 && (
                         <button
@@ -457,27 +457,9 @@ const CheckoutPage = () => {
                         <button
                             type="button"
                             onClick={() => {
-                                if (
-                                    active === 1 &&
-                                    name.firstName !== '' &&
-                                    name.lastName !== '' &&
-                                    formData.customerInfo.cusAdd1 !== '' &&
-                                    formData.customerInfo.cusPhone !== '' &&
-                                    formData.customerInfo.cusEmail !== '' &&
-                                    formData.customerInfo.cusCity !== '' &&
-                                    formData.customerInfo.cusState !== '' &&
-                                    formData.customerInfo.cusPostcode !== ''
-                                ) {
+                                if (active === 1 && formData.customerInfo.cusEmail) {
                                     setActive(active + 1);
-                                } else if (
-                                    active === 2 &&
-                                    name.firstName !== '' &&
-                                    name.lastName !== '' &&
-                                    formData.shippingInfo.shippingAdd1 !== '' &&
-                                    formData.shippingInfo.shippingCity !== '' &&
-                                    formData.shippingInfo.shippingState !== '' &&
-                                    formData.shippingInfo.shippingPostcode !== ''
-                                ) {
+                                } else if (active === 2 && formData.shippingInfo.shippingAdd1) {
                                     setActive(active + 1);
                                 } else {
                                     setError('Required fields must be provided');
@@ -494,23 +476,23 @@ const CheckoutPage = () => {
                         <button
                             type="button"
                             className={styles.checkout__checkoutForm__btn}
-                            id="button"
                             style={{ marginTop: '2rem' }}
-                            onClick={() => onHandleCheckout()}
+                            onClick={onHandleCheckout}
                             disabled={loading}
                         >
-                            {loading && (
+                            {loading ? (
                                 <>
                                     <VscLoading className={styles.checkout__loading__icon} />
                                     <span>Checking out...</span>
                                 </>
+                            ) : (
+                                <span>Checkout</span>
                             )}
-                            {!loading && <span>Checkout</span>}
                         </button>
                     )}
                 </aside>
             </main>
-            </div>
+        </div>
     );
 };
 

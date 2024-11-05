@@ -35,6 +35,21 @@ const FeedbackForm = () => {
     },[token])
 
     return (
+        <> 
+         <div className="slider-area">
+        <div className="single-slider slider-height2 d-flex align-items-center">
+          <div className="container">
+            <div className="row">
+              <div className="col-xl-12">
+                <div className="hero-cap text-center">
+                <h1> Feedback </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
         <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
             <h2>Submit Your Feedback</h2>
             <form onSubmit={handleSubmit}>
@@ -63,11 +78,12 @@ const FeedbackForm = () => {
                     />
                 </div>
                 
-                <button type="submit" style={{ padding: '10px 20px', cursor: 'pointer' }}>Submit</button>
+                <button type="submit" className="btn-primary" style={{ padding: '10px 20px', cursor: 'pointer'  } }>Submit</button>
             </form>
             
             {message && <p>{message}</p>}
         </div>
+        </>
     );
 };
 

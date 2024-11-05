@@ -25,7 +25,7 @@ const ExploreMenu = ({ category, setCategory }) => {
     <div className='explore-menu' id='explore-menu'>
         <h1>Explore Our Menu</h1>
         <p className='explore-menu=text'> We take pride in offering a diverse and delectable menu that caters to every palate.
-         Whether you're in the mood for comforting classics, healthy options, or adventurous new flavors, we've got you covered!
+         Whether youre in the mood for comforting classics, healthy options, or adventurous new flavors, we've got you covered!
 
 Freshly Prepared Dishes
 Our chefs craft each meal using the finest, freshest ingredients sourced from local markets. From zesty appetizers to hearty main courses and delightful desserts, every dish is prepared with love and care.</p>

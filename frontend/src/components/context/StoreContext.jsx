@@ -122,7 +122,7 @@ const StoreContextProvider = (props) => {
 
     // const url = "https://order-delivery-mern-backend-1.onrender.com";
     const url= "https://order-delivery-mern-backend-1.onrender.com"
-
+    // const url = "http://localhost:8000"
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {

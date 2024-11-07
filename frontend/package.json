@@ -27,7 +27,8 @@
     "react-multi-form": "^1.0.5",
     "react-owl-carousel": "^2.3.3",
     "react-paginate": "^8.2.0",
-    "react-router-dom": "^6.27.0"
+    "react-router-dom": "^6.27.0",
+    "react-slick": "^0.30.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

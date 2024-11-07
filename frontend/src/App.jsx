@@ -20,9 +20,10 @@ import MyOrders from './pages/MyOrders/MyOrders'
 // import Payment from './components/Payment/PaymentButton'
 import Checkout from './pages/Checkout'
 import BikasOrder from './pages/BikasOrder/BikasOrder'
+import FoodDisplay from './components/FoodDisplay/FoodDisplay';
 
 const App = () => {
-
+  const [category, setCategory] = useState('');
   const [showLogin, setShowLogin] = useState(false);
   return (
     <>
@@ -38,7 +39,8 @@ const App = () => {
         <Route path='/about' element={<About/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/app' element={<AppDownload/>}/>
-        <Route path='/menu' element={<Menu/>}/>
+        <Route path='/menu' element={<Menu category={category} setCategory={setCategory} />} />
+        {/* <FoodDisplay category={category} setCategory={setCategory}/> */}
         <Route path='/feedback' element={<Feedback/>}/>
         <Route path='/feedback_form' element={<FeedbackForm/>}/>
         <Route path='/bkash' element={<BikasOrder/>}/>

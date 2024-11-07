@@ -65,7 +65,7 @@ const Contact = () => {
               </div>
             </div>
             <div className="form-group mt-3">
-              <button type="submit" className="button button-contactForm boxed-btn">Send</button>
+              <button type="submit" className="button button-contactForm boxed-btn btn-primary">Send</button>
             </div>
           </form>
         </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import './Footer.css'
 import { assets } from '../../assets/assets'
 
+
 const Footer = () => {
   return (
     <div className='footer' id='footer'>
@@ -32,12 +33,13 @@ const Footer = () => {
                     <li>dulanjalisenarathna93@gmail.com</li>
                 </ul>
             </div>
-           
+            
         </div>
         <hr />
         <p className="footer-copyright text-white">
             Copyright 2024 &copy; Arif & Anik - All Right Reserved.
         </p>
+
     </div>
   )
 }

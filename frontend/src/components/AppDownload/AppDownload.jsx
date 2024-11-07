@@ -19,7 +19,8 @@ const AppDownload = () => {
          </div>
      </div>
      
-        <p>For Better Experience <br/>Tomato App</p>
+        <p>For Better Experience <br/>Food Space App</p>
+        <p>App Future Developing ...</p>
         <div className="app-download-platforms">
             <img src={assets.play_store} alt="" />
             <img src={assets.app_store} alt="" />

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 import Navbar from './components/Navbar/Navbar'
 import {Route, Routes} from 'react-router-dom'
 import Home from './pages/Home/Home'
@@ -15,9 +17,13 @@ import Menu from './components/ExploreMenu/ExploreMenu'
 import LoginPopup from './components/LoginPopup/LoginPopup'
 import Verify from './pages/Verify/Verify'
 import MyOrders from './pages/MyOrders/MyOrders'
+// import Payment from './components/Payment/PaymentButton'
+import Checkout from './pages/Checkout'
+import BikasOrder from './pages/BikasOrder/BikasOrder'
+import FoodDisplay from './components/FoodDisplay/FoodDisplay';
 
 const App = () => {
-
+  const [category, setCategory] = useState('');
   const [showLogin, setShowLogin] = useState(false);
   return (
     <>
@@ -33,10 +39,24 @@ const App = () => {
         <Route path='/about' element={<About/>}/>
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/app' element={<AppDownload/>}/>
-        <Route path='/menu' element={<Menu/>}/>
+        <Route path='/menu' element={<Menu category={category} setCategory={setCategory} />} />
+        {/* <FoodDisplay category={category} setCategory={setCategory}/> */}
         <Route path='/feedback' element={<Feedback/>}/>
         <Route path='/feedback_form' element={<FeedbackForm/>}/>
+        <Route path='/bkash' element={<BikasOrder/>}/>
+        <Route path='/checkout' element={<Checkout/>}/>
       </Routes>
+    </div>
+    <div>
+      {/* Your other components */}
+      <MessengerCustomerChat
+        pageId="61561385536955"
+        appId="504907639366440" // Replace with your actual Facebook App ID
+        language="en_US" // Optional: specify language, e.g., "en_US"
+        themeColor="#0084ff" // Optional: customize the theme color of the chat
+        loggedInGreeting="Hi! How can we help you?"
+        loggedOutGreeting="Please log in to chat with us."
+      />
     </div>
     <Footer/>
     </>

@@ -7,6 +7,8 @@ import AppDownload from '../../components/AppDownload/AppDownload'
 import Contact from '../../components/Contact/Contact'
 import Testomonial from '../../components/Testomonial/Testomonial'
 import About from '../../components/About/About'
+import FeedBackForm from '../../components/Feedback/FeedBackForm'
+import FeedbackList from '../../components/Feedback/FeedbackList'
 
 const Home = () => {
 
@@ -19,7 +21,9 @@ const Home = () => {
       <FoodDisplay category={category}/>
       <About/>
       <AppDownload/>
-      <Testomonial/>
+      <FeedBackForm/>
+      <FeedbackList/>
+      {/* <Testomonial/> */}
       <Contact/>
     </div>
   )

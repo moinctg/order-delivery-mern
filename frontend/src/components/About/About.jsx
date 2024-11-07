@@ -1,6 +1,28 @@
+import img1 from '../../assets/img/gallery/about.png'
+import img2 from '../../assets/img/gallery/about2.png'
+import img3 from '../../assets/img/gallery/about3.png'
+import img4 from '../../assets/img/gallery/about4.png'
 const About = () => {
-    return(
-        <div className="container-xxl py-5">
+  return (
+    <div>
+
+
+      <div className="slider-area">
+        <div className="single-slider slider-height2 d-flex align-items-center">
+          <div className="container">
+            <div className="row">
+              <div className="col-xl-12">
+                <div className="hero-cap text-center">
+                  <h1> About </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div className="container-xxl py-5">
         <div className="container">
           <div className="row g-5 align-items-center">
             <div className="col-lg-6">
@@ -9,7 +31,7 @@ const About = () => {
                   <img
                     className="img-fluid rounded w-100 wow zoomIn"
                     data-wow-delay="0.1s"
-                    src="img/about-1.jpg"
+                    src={img1}
                     alt="About 1"
                   />
                 </div>
@@ -17,7 +39,7 @@ const About = () => {
                   <img
                     className="img-fluid rounded w-75 wow zoomIn"
                     data-wow-delay="0.3s"
-                    src="img/about-2.jpg"
+                    src={img2}
                     alt="About 2"
                     style={{ marginTop: "25%" }}
                   />
@@ -26,7 +48,7 @@ const About = () => {
                   <img
                     className="img-fluid rounded w-75 wow zoomIn"
                     data-wow-delay="0.5s"
-                    src="img/about-3.jpg"
+                    src={img3}
                     alt="About 3"
                   />
                 </div>
@@ -34,7 +56,7 @@ const About = () => {
                   <img
                     className="img-fluid rounded w-100 wow zoomIn"
                     data-wow-delay="0.7s"
-                    src="img/about-4.jpg"
+                    src={img4}
                     alt="About 4"
                   />
                 </div>
@@ -46,16 +68,17 @@ const About = () => {
               </h5>
               <h1 className="mb-4">
                 Welcome to{" "}
-                <i className="fa fa-utensils text-primary me-2"></i>Restoran
+                <i className="fa fa-utensils text-primary me-2">Red Chili</i>Restaurant 
               </h1>
               <p className="mb-4">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
-                diam amet diam et eos erat ipsum et lorem et sit, sed stet lorem sit.
+                At Food Order Delivery Sysem , we believe that great food brings people together. Our mission is to make it easier for you to enjoy your favorite meals from the comfort of your home. Whether you’re craving a quick snack or a gourmet feast, we’re here to deliver fresh, delicious food straight to your door.
               </p>
               <p className="mb-4">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
-                diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet
-                lorem sit clita duo justo magna dolore erat amet
+              We partner with the best local restaurants and chefs, offering a wide variety of cuisines to satisfy every craving. From classic comfort foods to exotic dishes from around the world, we bring the flavors you love, made with the freshest ingredients and the highest quality standards.
+
+What sets us apart? It’s our commitment to convenience and customer satisfaction. With a user-friendly app, seamless ordering process, and fast, reliable delivery, we make sure your meal arrives hot and ready, right when you want it. Plus, our real-time tracking keeps you updated every step of the way.
+
+At [Your App Name], food is more than just a necessity—it’s an experience. We’re passionate about creating moments of joy with every order, and we’re dedicated to serving you with care and professionalism. So sit back, relax, and let us take care of your cravings
               </p>
               <div className="row g-4 mb-4">
                 <div className="col-sm-6">
@@ -94,8 +117,8 @@ const About = () => {
           </div>
         </div>
       </div>
-      
-    
-    )
+    </div>
+
+  )
 }
 export default About;

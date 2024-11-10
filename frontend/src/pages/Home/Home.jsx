@@ -20,7 +20,7 @@ const Home = () => {
       <ExploreMenu category={category} setCategory={setCategory}/>
       <FoodDisplay category={category} setCategory={setCategory}/>
       <About/>
-      <AppDownload/>
+      {/* <AppDownload/> */}
       <FeedBackForm/>
       <FeedbackList/>
       {/* <Testomonial/> */}

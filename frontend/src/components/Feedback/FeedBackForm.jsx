@@ -1,21 +1,20 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-import { StoreContext, useUser } from '../context/StoreContext';
+import { StoreContext } from '../context/StoreContext';
 
 const FeedbackForm = () => {
     const { url, token } = useContext(StoreContext);
-    const { user } = useUser();
     const [feedbackText, setFeedbackText] = useState('');
     const [rating, setRating] = useState(0);
     const [message, setMessage] = useState(''); // To display a success/error message after submission
     const handleSubmit = async (e) => {
         e.preventDefault();
         
-        if (!user || !user._id) {
-            setMessage("User data is unavailable. Please log in.");
-            console.error("User data not found.");
-            return;
-        }
+        // if (!user || !user._id) {
+        //     setMessage("User data is unavailable. Please log in.");
+        //     console.error("User data not found.");
+        //     return;
+        // }
     
         try {
             const response = await axios.post(
@@ -48,9 +47,9 @@ const FeedbackForm = () => {
         }
     };
     
-    useEffect(() => {
-        console.log("User context:", user);
-    }, [user]);
+    // useEffect(() => {
+    //     console.log("User context:", user);
+    // }, [user]);
     
 
     return (

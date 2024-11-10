@@ -51,9 +51,9 @@ const Navbar = ({ setShowLogin }) => {
           <li className="nav-item">
             <Link to='/about' onClick={() => setMenu('about')} className={menu === 'about' ? 'active' : ''}>About</Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <Link to='/app' onClick={() => setMenu('app')} className={menu === 'app' ? 'active' : ''}>Mobile App</Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link to='/contact' onClick={() => setMenu('contact')} className={menu === 'contact' ? 'active' : ''}>Contact Us</Link>
           </li>

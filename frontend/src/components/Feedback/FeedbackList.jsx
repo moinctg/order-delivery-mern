@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../Testomonial/Testomonial.css'
-import { useUser } from '../context/StoreContext';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -10,7 +9,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 const FeedbackList = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [error, setError] = useState('');
-  const { user } = useUser();
+
 
   useEffect(() => {
     const fetchFeedbacks = async () => {

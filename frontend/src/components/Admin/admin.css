@@ -1,0 +1,42 @@
+.admin-login, .admin-dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.admin-login h2, .admin-dashboard h2 {
+    color: #333;
+}
+
+.admin-login input, .manager-form input {
+    padding: 8px;
+    margin: 5px;
+    width: 200px;
+}
+
+.manager-form button, .admin-login button {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.manager-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.manager-list li {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin: 5px 0;
+}
+
+.manager-list button {
+    margin-left: 5px;
+    background-color: #f44336;
+    color: white;
+}

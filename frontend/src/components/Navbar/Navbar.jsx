@@ -24,7 +24,7 @@ const Navbar = ({ setShowLogin }) => {
   return (
     <div className='navbar navbar-expand-lg'>
       <Link to='/'>
-        <img src={assets.logo} alt="Logo" className='logo' />
+        <img src={assets.logo}  alt="Logo" className='logo' />
       </Link>
       
       {/* Navbar Toggle Button */}

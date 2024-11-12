@@ -27,6 +27,7 @@ import BikasOrder from './pages/BikasOrder/BikasOrder';
 import Dashboard from './pages/Dashboard/Dashboard'
 import AdminDashboard from './components/Admin/Admin';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import ProductsDetails from './pages/ProductsDetails/ProductsDetails'
 
 const App = () => {
   const [category, setCategory] = useState('');
@@ -53,13 +54,14 @@ const App = () => {
           <Route path="/bkash" element={<BikasOrder />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/dashboard" element={
+          <Route path="/dashboard/*" element={
     <ProtectedRoute>
         <Dashboard />
     </ProtectedRoute>
 } />
           {/* Private Route */}
           {/* <Route path="/dashboard" element={<PrivateRoute element={<AdminDashboard />} />} /> */}
+          <Route path="/products" element={ProductsDetails } />
         </Routes>
       </div>
 

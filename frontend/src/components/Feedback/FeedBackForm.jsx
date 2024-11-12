@@ -3,54 +3,55 @@ import axios from 'axios';
 import { StoreContext } from '../context/StoreContext';
 
 const FeedbackForm = () => {
-    const { url, token } = useContext(StoreContext);
+    const { url, user } = useContext(StoreContext); // No token, only user needed
+    const [nameText, setNameText] = useState('');
     const [feedbackText, setFeedbackText] = useState('');
     const [rating, setRating] = useState(0);
     const [message, setMessage] = useState(''); // To display a success/error message after submission
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
+        // Check if user is logged in (user._id exists)
         // if (!user || !user._id) {
-        //     setMessage("User data is unavailable. Please log in.");
+        //     setMessage("User is not logged in. Please log in to submit feedback.");
         //     console.error("User data not found.");
         //     return;
         // }
-    
+
         try {
+            // Submit feedback without token validation
             const response = await axios.post(
-                `${url}/api/feedback/submit`,
+                `${url}/api/feedback/submit`, // Ensure the URL is correct
                 {
-                    userId: user._id,  // Ensure only `user._id` is sent
+                    nameText, // Send only user._id, feedbackText, and rating
                     feedbackText,
                     rating,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Assuming token is required
-                    },
                 }
             );
+
+            // Successfully submitted feedback
             console.log(response.data);
-    
             setMessage('Feedback submitted successfully!');
+            setNameText('')
             setFeedbackText('');
             setRating(0);
         } catch (error) {
-            setMessage('Error submitting feedback');
+            // Handle errors
             console.error(error);
-    
+
             if (error.response?.status === 404) {
-                setMessage("API endpoint not found or user data missing.");
-            } else if (error.response?.data?.message === "User not found") {
-                setMessage("Error: User not recognized by the server.");
+                setMessage("API endpoint not found.");
+            } else {
+                setMessage("Error submitting feedback.");
             }
         }
     };
-    
-    // useEffect(() => {
-    //     console.log("User context:", user);
-    // }, [user]);
-    
+
+    useEffect(() => {
+        // Log user for debugging
+        console.log("User:", user);
+    }, [user]);
 
     return (
         <> 
@@ -71,6 +72,16 @@ const FeedbackForm = () => {
             <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
                 <h2>Submit Your Feedback</h2>
                 <form onSubmit={handleSubmit}>
+                <div className="form-group" style={{ marginBottom: '15px' }}>
+                        <label htmlFor="feedbackText">Full Name:</label>
+                        <textarea
+                            id="nameText"
+                            value={nameText}
+                            onChange={(e) => setNameText(e.target.value)}
+                            style={{ width: '100%', padding: '10px' }}
+                            placeholder="Enter your feedback here"
+                        ></textarea>
+                    </div>
                     <div className="form-group" style={{ marginBottom: '15px' }}>
                         <label htmlFor="feedbackText">Feedback:</label>
                         <textarea

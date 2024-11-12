@@ -1,3 +1,4 @@
+import React from 'react'
 import img1 from '../../assets/img/gallery/about.png'
 import img2 from '../../assets/img/gallery/about2.png'
 import img3 from '../../assets/img/gallery/about3.png'
@@ -68,7 +69,7 @@ const About = () => {
               </h5>
               <h1 className="mb-4">
                 Welcome to{" "}
-                <i className="fa fa-utensils text-primary me-2">Red Chili</i>Restaurant 
+                <i className="fa fa-utensils text-primary me-2">Food Express </i>Restaurant 
               </h1>
               <p className="mb-4">
                 At Food Order Delivery Sysem , we believe that great food brings people together. Our mission is to make it easier for you to enjoy your favorite meals from the comfort of your home. Whether you’re craving a quick snack or a gourmet feast, we’re here to deliver fresh, delicious food straight to your door.

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const DailyOrderList = ( {url }) => {
+const DailyOrderList = ({ url }) => {
     const [orders, setOrders] = useState([]);
     const [error, setError] = useState("");
 
@@ -9,8 +9,7 @@ const DailyOrderList = ( {url }) => {
         const fetchDailyOrders = async () => {
             try {
                 const response = await axios.get(`${url}/api/order/daily-orders`);
-             
-                console.log(response.data)
+                console.log(response.data);
                 setOrders(response.data);
             } catch (err) {
                 setError("Error fetching daily orders");
@@ -26,46 +25,45 @@ const DailyOrderList = ( {url }) => {
     }, []);
 
     return (
-        <div className="container mx-auto p-6 bg-gray-50 rounded-lg shadow-md">
-    <h1 className="text-2xl font-bold text-center text-gray-800 mb-4">Today Orders</h1>
-    <table className="min-w-full border-collapse border border-gray-200">
-        <thead>
-            <tr className="bg-blue-600 text-white">
-                <th className="p-3 border border-gray-300">Customer</th>
-                <th className="p-3 border border-gray-300">Email</th>
-                <th className="p-3 border border-gray-300">Address</th>
-                <th className="p-3 border border-gray-300">Date</th>
-                <th className="p-3 border border-gray-300">Total Amount</th>
-                <th className="p-3 border border-gray-300">Status</th>
-                <th className="p-3 border border-gray-300">Payment</th>
-            </tr>
-        </thead>
-        <tbody>
-            {orders.map((order) => (
-                <tr key={order._id} className="even:bg-gray-100 hover:bg-blue-50 transition duration-200">
-                    <td className="p-3 border border-gray-300">{order.address.firstName} {order.address.lastName}</td>
-                    <td className="p-3 border border-gray-300">{order.address.email}</td>
-                    <td className="p-3 border border-gray-300">{order.address.street}, {order.address.city}</td>
-                    <td className="p-3 border border-gray-300">{new Date(order.createdAt).toLocaleString()}</td>
-                    <td className="p-3 border border-gray-300 font-semibold">${order.amount.toFixed(2)}</td>
-                    <td className="p-3 border border-gray-300">
-                        <span className={`inline-block px-2 py-1 text-xs font-semibold rounded-full 
-                            ${order.status === 'Food Processing' ? 'bg-yellow-500 text-white' : 'bg-green-500 text-white'}`}>
-                            {order.status}
-                        </span>
-                    </td>
-                    <td className="p-3 border border-gray-300">
-                        <span className={`inline-block px-2 py-1 text-xs font-semibold rounded-full 
-                            ${order.payment ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`}>
-                            {order.payment ? "Paid" : "Not Paid"}
-                        </span>
-                    </td>
-                </tr>
-            ))}
-        </tbody>
-    </table>
-</div>
-
+        <div className="container p-4 my-4 bg-light rounded shadow-sm">
+            <h1 className="text-center mb-4">Today’s Orders</h1>
+            {error && <p className="text-danger">{error}</p>}
+            <table className="table table-bordered table-hover">
+                <thead className="table-primary text-center">
+                    <tr>
+                        <th>Customer</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Date</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Payment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {orders.map((order) => (
+                        <tr key={order._id}>
+                            <td>{order.address.firstName} {order.address.lastName}</td>
+                            <td>{order.address.email}</td>
+                            <td>{order.address.street}, {order.address.city}</td>
+                            <td>{new Date(order.createdAt).toLocaleString()}</td>
+                            <td className="font-weight-bold">${order.amount.toFixed(2)}</td>
+                            <td>
+                                <span className={`badge 
+                                    ${order.status === 'Food Processing' ? 'bg-warning text-dark' : 'bg-success'}`}>
+                                    {order.status}
+                                </span>
+                            </td>
+                            <td>
+                                <span className={`badge ${order.payment ? 'bg-success' : 'bg-danger'}`}>
+                                    {order.payment ? "Paid" : "Not Paid"}
+                                </span>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
     );
 };
 

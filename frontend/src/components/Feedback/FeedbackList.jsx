@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import axios from 'axios';
 import '../Testomonial/Testomonial.css'
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { StoreContext } from '../context/StoreContext';
+
 
 const FeedbackList = () => {
+  const { url, user } = useContext(StoreContext); 
   const [feedbacks, setFeedbacks] = useState([]);
   const [error, setError] = useState('');
 
@@ -14,7 +17,7 @@ const FeedbackList = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await axios.get('https://order-delivery-mern-backend-1.onrender.com/api/feedback');
+        const response = await axios.get( `${url}/api/feedback`);
         setFeedbacks(response.data);
       } catch (err) {
         setError('Error fetching feedback');
@@ -63,11 +66,11 @@ const FeedbackList = () => {
                 <div className="testimonial-content" style={{ border: '1px solid #ddd', padding: '10px', margin: '10px 0', borderRadius: '8px' }}>
                   <img
                     src={feedback.image || 'default-avatar.png'}
-                    alt={feedback.user?.name || 'Anonymous'}
+                    alt={feedback.name}
                     className="testimonial-img"
                     style={{ width: '50px', height: '50px', borderRadius: '50%', marginBottom: '10px' }}
                   />
-                  <h4>{feedback.user?.name || "Anonymous"}</h4>
+                  <h4>{feedback.name}</h4>
                   <p>{feedback.feedbackText}</p>
                   <p>Rating: {feedback.rating}</p>
                 </div>

@@ -7,21 +7,21 @@
 }
 
 .navbar .logo{
-    width: 150px;
+    width: 250px;
 }
 
 .navbar-menu{
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 50px;
     color: #020b29;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 .navbar-right{
     display: flex;
     align-items: center;
-    gap: 40px;
+    gap: 70px;
 }
 .navbar:hover{
     color: red;
